@@ -1,30 +1,16 @@
-def verificar_ganador_ronda(jugador:int , maquina: int)->str:
+def verificar_ganador_ronda(jugador: int, maquina: int)->str:
     """
     Recibe 2 enteros, los valores de piedra papel o tijera.
     Calcula quien gana la ronda o si hay empate.
     Retorna un string con el resultado de la ronda.
     """
-    if jugador == 1:
-        if maquina == 1:
-            ganador = "Empate"
-        elif maquina == 2:
-            ganador = "Maquina"
-        else:
-            ganador = "Jugador"
-    elif jugador == 2:
-        if maquina == 1:
-            ganador = "Jugador"
-        elif maquina == 2:
-            ganador = "Empate"
-        else: 
-            ganador = "Maquina"
+    if (jugador == 1 and maquina == 3) or (jugador == 2 and maquina == 1) or (
+        jugador == 3 and maquina == 2):
+        ganador = "Jugador"
+    elif jugador == maquina:
+        ganador = "Empate"
     else:
-        if maquina == 1:
-            ganador = "Maquina"
-        elif maquina == 2:
-            ganador = "Jugador"
-        else:
-            ganador = "Empate"
+        ganador = "Maquina"
 
     return ganador
 
@@ -37,29 +23,16 @@ def verificar_estado_partida(aciertos_jugador: int, aciertos_maquina: int,
     Retorna True si continua, False si finaliza.
     """
     retorno = True
-
-    if ronda_actual <= 3:
-        #Casos que cortan la partida
-        if(
-            (aciertos_jugador == 2 and aciertos_maquina == 0) or 
-            (aciertos_jugador == 0 and aciertos_maquina == 2) or
-            (aciertos_jugador + aciertos_maquina == 3 and
-            ronda_actual == 3)
-        ):
-            retorno = False
-        else:
-            retorno = True
-    #Caso de que empatan las 3 primeras
-    else:
-        if aciertos_jugador == aciertos_maquina:
-            retorno = True
-        else:
-            retorno = False
     
+    if aciertos_jugador == 2 or aciertos_maquina == 2 or (
+    ronda_actual >= 3 and aciertos_jugador != aciertos_maquina):
+        retorno = False
+
     return retorno
 
 def verificar_ganador_partida(aciertos_jugador: int,
-                            aciertos_maquina: int, ronda_actual: int)-> str|None:
+                            aciertos_maquina: int, 
+                            ronda_actual: int)-> str|None:
     """
     Recibe 3 enteros, la cantidad de rondas ganadas de los 2 jugadores
     y la ronda actual.
@@ -73,7 +46,6 @@ def verificar_ganador_partida(aciertos_jugador: int,
             ganador = "Jugador"
         else:
             ganador = "Maquina"
-
 
     return ganador
     

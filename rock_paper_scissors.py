@@ -39,7 +39,7 @@ def jugar_piedra_papel_tijera()-> str:
 #endregion
 
 #region ganador ronda
-        ganador_ronda = verificar_ganador_ronda(eleccion_jugador, 
+        ganador_ronda = verificar_ganador_ronda(eleccion_jugador,
                                                 eleccion_maquina)
 
         if ganador_ronda == "Jugador":
@@ -52,7 +52,7 @@ def jugar_piedra_papel_tijera()-> str:
             print("Empate en esta ronda.")
 #endregion
 
-        if not verificar_estado_partida(puntaje_jugador, puntaje_maquina, 
+        if not verificar_estado_partida(puntaje_jugador, puntaje_maquina,
                                     ronda_actual):
             break
 
